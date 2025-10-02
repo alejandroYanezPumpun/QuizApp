@@ -9,10 +9,25 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
+        appBar: AppBar(
+          title: Text('Quizz App', style: TextStyle(fontSize: 22, color: Colors.white, fontWeight: FontWeight.bold)),
+          backgroundColor: Color.fromARGB(255, 60, 0, 103),
+          toolbarHeight: 35,
+        ),
+        body: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Color.fromARGB(255, 51, 0, 88),
+                Color.fromARGB(255, 112, 0, 132),
+                Color.fromARGB(255, 51, 0, 88),
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
         ),
       ),
     );
