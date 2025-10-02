@@ -12,6 +12,7 @@ class CustomTextDisplay extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(  
       text,
+      textAlign: textAlign,
       style: TextStyle(
         fontSize: fontSize.toDouble(),
         color: color,

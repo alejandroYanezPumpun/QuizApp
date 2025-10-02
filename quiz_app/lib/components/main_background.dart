@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/data/questions.dart';
 import 'package:quiz_app/screens/questions_screen.dart';
 import 'package:quiz_app/screens/quizz_home_screen.dart';
 
@@ -10,8 +11,19 @@ class BackgroundContainer extends StatefulWidget {
 }
 
 class _BackgroundContainerState extends State<BackgroundContainer> {
-  
+  List<String> selectedAnswers = [];
   Widget? activeScreen;
+
+  void chooseAnswer(String answer) {
+    selectedAnswers.add(answer);
+
+    if (selectedAnswers.length == questions.length) {
+      setState(() {
+        activeScreen = QuizzHomeScreen( changeScreen);
+        selectedAnswers = [];
+      });
+    }
+  }
 
   @override
   void initState() {
@@ -21,8 +33,8 @@ class _BackgroundContainerState extends State<BackgroundContainer> {
 
   void changeScreen() {
     setState(() {
-      activeScreen = const QuestionsScreen();
-      print('Screen changed to QuestionsScreen');
+      activeScreen = QuestionsScreen(onSelectAnswer: chooseAnswer);
+  
     });
   }
 

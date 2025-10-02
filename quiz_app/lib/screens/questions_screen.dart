@@ -4,7 +4,8 @@ import 'package:quiz_app/components/custom_text_display.dart';
 import 'package:quiz_app/data/questions.dart';
 
 class QuestionsScreen extends StatefulWidget {
-  const QuestionsScreen({super.key});
+  final void Function(String answer) onSelectAnswer;
+  const QuestionsScreen({super.key, required this.onSelectAnswer});
 
   @override
   State<QuestionsScreen> createState() => _QuestionsScreenState();
@@ -14,7 +15,8 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
 
   var currentQuestionIndex = 0;
 
-  void answerQuestion() {
+  void answerQuestion(String selectedAnswer) {
+    widget.onSelectAnswer(selectedAnswer);
     setState(() {
       currentQuestionIndex++;
     });
@@ -28,12 +30,16 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
       
       children: [
         SizedBox(height: 150),
-        Center(
-          child: CustomTextDisplay(
-            text: currentQuestion.text,
-            fontSize: 32,
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          child: Center(
+            child: CustomTextDisplay(
+              text: currentQuestion.text,
+              fontSize: 30,
+              color: const Color.fromARGB(255, 250, 209, 255),
+              fontWeight: FontWeight.bold,
+              textAlign: TextAlign.center,
+            ),
           ),
         ),
         SizedBox(height: 5),
@@ -41,12 +47,15 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
           children: [
             ...currentQuestion.getShuffledAnswers().map((answer) {
               return Padding(
-                padding: const EdgeInsets.only(bottom: 10.0),
-                child: AnswerButton(
-                  onPressed: () {
-                    answerQuestion();
-                  },
-                  answerText: answer,
+                padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 6.0),
+                child: SizedBox(
+                  width: double.infinity,
+                  child: AnswerButton(
+                    onPressed: () {
+                      answerQuestion(answer);
+                    },
+                    answerText: answer,
+                  ),
                 ),
               );
             }),
