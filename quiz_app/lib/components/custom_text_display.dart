@@ -5,7 +5,8 @@ class CustomTextDisplay extends StatelessWidget {
   final int fontSize;
   final Color color;
   final FontWeight? fontWeight;
-  const CustomTextDisplay({super.key, required this.text, required this.fontSize, required this.color,  this.fontWeight});
+  final TextAlign? textAlign;
+  const CustomTextDisplay({super.key, required this.text, required this.fontSize, required this.color,  this.fontWeight,  this.textAlign});
 
   @override
   Widget build(BuildContext context) {

@@ -3,14 +3,14 @@ import 'package:quiz_app/components/custom_images_display.dart';
 import 'package:quiz_app/components/custom_text_display.dart';
 
 class QuizzHomeScreen extends StatelessWidget {
-  const QuizzHomeScreen({super.key});
+  final void Function()? startQuiz;
+  const QuizzHomeScreen(this.startQuiz, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        
         CustomImageDisplay(
           imagePath: 'assets/images/quiz-logo.png',
           height: 340,
@@ -27,7 +27,7 @@ class QuizzHomeScreen extends StatelessWidget {
         ),
 
         OutlinedButton.icon(
-          onPressed: () {},
+          onPressed: startQuiz,
           style: OutlinedButton.styleFrom(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
@@ -35,7 +35,6 @@ class QuizzHomeScreen extends StatelessWidget {
             side: const BorderSide(
               color: Color.fromARGB(205, 255, 255, 255),
               width: 1.5,
-              
             ),
           ),
           label: CustomTextDisplay(
